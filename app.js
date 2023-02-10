@@ -2,7 +2,8 @@ const express = require('express')
 const app =  express()
 const mongoose = require('mongoose')
 const PORT = process.env.PORT || 5000
-const {MONGOURI}= require('./config/keys')
+// archnemesis12
+const MONGOURI ="mongodb+srv://alcatraz:archnemesis12@cluster0.kz4tw3h.mongodb.net/?retryWrites=true&w=majority"
 //oiCssdTi97gDqNR0
 
 
