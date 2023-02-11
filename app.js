@@ -1,5 +1,6 @@
 const express = require('express')
 const app =  express()
+const cors = require('cors')
 const mongoose = require('mongoose')
 const PORT = process.env.PORT || 5000
 // archnemesis12
@@ -9,6 +10,23 @@ const MONGOURI ="mongodb+srv://alcatraz:archnemesis12@cluster0.kz4tw3h.mongodb.n
 app.get('/', (req, res) => {
     res.send('Hello World!')
   })
+app.use(
+    cors({
+      origin: "*",
+      credentials: true,
+    })
+);
+app.use(cors());
+
+  app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
+  });
+
 
 
 mongoose.connect(MONGOURI)
@@ -29,14 +47,7 @@ require('./models/post')
 
 app.use(express.json())
 
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    next();
-  });
+
 app.use(require('./routes/auth'))
 app.use(require('./routes/post'))
 app.use(require('./routes/user'))
