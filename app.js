@@ -24,7 +24,18 @@ mongoose.connection.on('error',(err)=>{
 require('./models/user')
 require('./models/post')
 
+
 app.use(express.json())
+
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
+  });
+
 app.use(require('./routes/auth'))
 app.use(require('./routes/post'))
 app.use(require('./routes/user'))
