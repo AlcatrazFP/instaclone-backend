@@ -6,7 +6,9 @@ const PORT = process.env.PORT || 5000
 const MONGOURI ="mongodb+srv://alcatraz:archnemesis12@cluster0.kz4tw3h.mongodb.net/?retryWrites=true&w=majority"
 //oiCssdTi97gDqNR0
 
-
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+  })
 
 
 mongoose.connect(MONGOURI)
@@ -35,7 +37,6 @@ app.use(function (req, res, next) {
     );
     next();
   });
-
 app.use(require('./routes/auth'))
 app.use(require('./routes/post'))
 app.use(require('./routes/user'))
